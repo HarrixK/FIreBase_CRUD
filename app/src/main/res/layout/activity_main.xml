@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/DocumentID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Document ID" />
+
+    <EditText
+        android:id="@+id/DocumentIDET"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DocumentID"
+        android:layout_marginStart="10dp"
+        android:hint="Enter Document ID"
+        android:inputType="text"
+        android:maxLength="20"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/CityNameID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DocumentIDET"
+        android:layout_marginStart="10dp"
+        android:text="City Name" />
+
+    <EditText
+        android:id="@+id/CityName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CityNameID"
+        android:layout_marginStart="10dp"
+        android:hint="Enter City Name"
+        android:inputType="text"
+        android:maxLength="20"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/CityDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CityName"
+        android:layout_marginStart="10dp"
+        android:text="City Details" />
+
+    <EditText
+        android:id="@+id/DetailsET"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CityDetails"
+        android:layout_marginStart="10dp"
+        android:hint="Enter City Details"
+        android:inputType="text"
+        android:maxLength="20"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/Button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DetailsET"
+        android:layout_marginStart="10dp"
+        android:onClick="addValues"
+        android:text="Enter Data" />
+
+    <Button
+        android:id="@+id/Read"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Button"
+        android:layout_marginStart="10dp"
+        android:onClick="getData"
+        android:text="Get Data" />
+
+    <TextView
+        android:id="@+id/GetDataTV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GetDataTV"
+        android:layout_marginStart="10dp"
+        android:onClick="getData"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/GetDataTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Read"
+        android:layout_marginStart="10dp"
+        android:onClick="getData"
+        android:textSize="20sp" />
+
+</RelativeLayout>
