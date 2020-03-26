@@ -72,19 +72,37 @@
         android:text="Enter Data" />
 
     <Button
-        android:id="@+id/Read"
+        android:id="@+id/UpdateButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/Button"
         android:layout_marginStart="10dp"
+        android:onClick="update"
+        android:text="Update Data" />
+
+    <Button
+        android:id="@+id/Read"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/UpdateButton"
+        android:layout_marginStart="10dp"
         android:onClick="getData"
         android:text="Get Data" />
+
+    <Button
+        android:id="@+id/Delete"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Read"
+        android:layout_marginStart="10dp"
+        android:onClick="Remove"
+        android:text="Delete" />
 
     <TextView
         android:id="@+id/GetDataTV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/GetDataTV"
+        android:layout_below="@id/Delete"
         android:layout_marginStart="10dp"
         android:onClick="getData"
         android:textSize="20sp" />
@@ -93,7 +111,7 @@
         android:id="@+id/GetDataTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Read"
+        android:layout_below="@id/GetDataTV1"
         android:layout_marginStart="10dp"
         android:onClick="getData"
         android:textSize="20sp" />
