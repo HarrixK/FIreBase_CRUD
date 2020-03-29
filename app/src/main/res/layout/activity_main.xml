@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Document ID" />
+        android:text="Document Details" />
 
     <EditText
         android:id="@+id/DocumentIDET"
@@ -75,8 +75,9 @@
         android:id="@+id/UpdateButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Button"
+        android:layout_below="@id/DetailsET"
         android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/Button"
         android:onClick="update"
         android:text="Update Data" />
 
@@ -84,7 +85,7 @@
         android:id="@+id/Read"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/UpdateButton"
+        android:layout_below="@id/Button"
         android:layout_marginStart="10dp"
         android:onClick="getData"
         android:text="Get Data" />
@@ -93,19 +94,40 @@
         android:id="@+id/Delete"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Read"
+        android:layout_below="@id/UpdateButton"
         android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/Read"
         android:onClick="Remove"
         android:text="Delete" />
+
+    <Button
+        android:id="@+id/Collection"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Read"
+        android:layout_marginStart="10dp"
+        android:onClick="getCollection"
+        android:text="Get Collection" />
+
+    <Button
+        android:id="@+id/DeleteCollection"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Delete"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/Collection"
+        android:onClick="RemoveCollection"
+        android:text="Remove All" />
 
     <TextView
         android:id="@+id/GetDataTV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Delete"
+        android:layout_below="@id/Collection"
         android:layout_marginStart="10dp"
         android:onClick="getData"
         android:textSize="20sp" />
+
 
     <TextView
         android:id="@+id/GetDataTV"
@@ -114,6 +136,7 @@
         android:layout_below="@id/GetDataTV1"
         android:layout_marginStart="10dp"
         android:onClick="getData"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
 </RelativeLayout>
