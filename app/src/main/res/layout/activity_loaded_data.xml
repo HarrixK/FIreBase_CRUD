@@ -13,6 +13,17 @@
         android:src="@drawable/ic_wave_11"
         android:layout_alignParentTop="true"/>
 
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/Firebase"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_back"
+        android:onClick="Change"
+        android:layout_marginStart="10dp"
+        />
+
     <ImageView
         android:id="@+id/Firebase"
         android:layout_width="150dp"

@@ -41,6 +41,11 @@ public class loaded_data extends AppCompatActivity {
         getCollection(load);
     }
 
+    public void Change(View v) {
+        Intent intent = new Intent(loaded_data.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void getCollection(View v) {
         try {
             objectDialog.show();
@@ -54,9 +59,9 @@ public class loaded_data extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Log.d(TAG, document.getId() + " => " + document.getData());
-                                    Toast.makeText(loaded_data.this, "Loading Collection", Toast.LENGTH_SHORT).show();
                                     data += "Document ID: " + document.getId().toString() + "\n Document Details: " + document.getData().toString() + "\n\n";
                                 }
+                                Toast.makeText(loaded_data.this, "Loading Collection", Toast.LENGTH_SHORT).show();
                                 load.setText(data);
                             } else {
                                 objectDialog.dismiss();
