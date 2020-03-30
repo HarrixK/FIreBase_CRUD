@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,11 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore objectFirebaseFirestore;
     private Dialog objectDialog;
 
+    public String Collection="";
+
     private static final String TAG = "MainActivity";
     private static final String CollectionName = "NewCities";
 
     private EditText documentET, cityNameET, cityDetailsET;
-    private TextView valuetextbox, valuetextbox2;
+    private TextView valuetextbox2;
+    public  TextView Loaded;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -63,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         cityNameET = findViewById(R.id.CityName);
 
         cityDetailsET = findViewById(R.id.DetailsET);
-        valuetextbox = findViewById(R.id.GetDataTV);
         valuetextbox2 = findViewById(R.id.GetDataTV1);
+        Loaded = findViewById(R.id.LoadData);
 
         objectDialog.setContentView(R.layout.please_wait_layout);
     }
@@ -81,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if(task.getResult().exists()){
+                                if (task.getResult().exists()) {
                                     objectDialog.dismiss();
                                     documentET.setText("");
                                     cityDetailsET.setText("");
                                     cityNameET.setText("");
+                                    documentET.requestFocus();
                                     Toast.makeText(MainActivity.this, "Document Already Exists", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                                } else {
                                     Map<String, Object> objectMap = new HashMap<>();
                                     objectMap.put("city_name", cityNameET.getText().toString());
 
@@ -99,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     objectDialog.dismiss();
+                                                    documentET.setText("");
+                                                    cityDetailsET.setText("");
+                                                    cityNameET.setText("");
+                                                    documentET.requestFocus();
                                                     Toast.makeText(MainActivity.this, "Data Added Successfully", Toast.LENGTH_SHORT).show();
                                                 }
                                             })
@@ -135,13 +143,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         objectDialog.dismiss();
                         if (documentSnapshot.exists()) {
-                            valuetextbox.setText("");
+                            valuetextbox2.setText("");
                             documentET.setText("");
 
                             documentET.requestFocus();
                             String City = documentSnapshot.getString("city_name");
                             String Details = documentSnapshot.getString("city_details");
-                            valuetextbox.setText("\nCity Name: " + City + "\n\n" + "City Details: " + Details);
+                            cityNameET.setText(City);
+                            cityDetailsET.setText(Details);
+//                            valuetextbox.setText("\nCity Name: " + City + "\n\n" + "City Details: " + Details);
                         } else {
                             Toast.makeText(MainActivity.this, "No Documents Retrieved", Toast.LENGTH_SHORT).show();
                         }
@@ -227,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             objectDialog.dismiss();
-                                            Toast.makeText(MainActivity.this, "Document Deleted", Toast.LENGTH_SHORT).show();
+                                            valuetextbox2.setText("");
+                                            Toast.makeText(MainActivity.this, "Collection Deleted", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -263,12 +274,15 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Log.d(TAG, document.getId() + " => " + document.getData());
+                                    Toast.makeText(MainActivity.this, "Loading Collection", Toast.LENGTH_SHORT).show();
                                     data += "Document ID: " + document.getId().toString() + "\n Document Details: " + document.getData().toString() + "\n\n";
                                 }
-                                valuetextbox2.setText(data);
+                                Collection=data;
+                                Intent intent = new Intent(MainActivity.this, loaded_data.class);
+                                startActivity(intent);
                             } else {
                                 objectDialog.dismiss();
-                                Toast.makeText(MainActivity.this, "Failed To Load Collection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Failed To Load Collection", Toast.LENGTH_LONG).show();
                                 Log.w(TAG, "Error getting documents.", task.getException());
                             }
                         }
